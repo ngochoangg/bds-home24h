@@ -1,5 +1,6 @@
 // index.html
 jQuery(($) => {
+    window.localStorage.setItem("current", "index.html");
     console.log("Trang index");
 
     const gURL = "http://localhost:8080";

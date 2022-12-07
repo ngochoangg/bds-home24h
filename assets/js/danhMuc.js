@@ -1,5 +1,6 @@
 // property-grid.html
 jQuery(($) => {
+  window.localStorage.setItem("current", "property-grid.html");
   console.log("Khu vực danh sách nhà đang bán");
 
   const gURL = "http://localhost:8080";
