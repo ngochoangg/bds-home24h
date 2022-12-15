@@ -135,6 +135,14 @@
             <a class="nav-link " href="contact.html">Liên hệ</a>
           </li>
         </ul>
+        <div class="nav-item dropdown">
+          <button class="btn" id="dropdownUser" type="button" data-bs-toggle="dropdown" aria-expanded="true"><span
+              id="user-name">Guest</span></button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+            <li><a class="btn btn-link btn-logout text-decoration-none" type="button" id="btn-nhap-xuat">Đăng
+                xuất</a></li>
+          </ul>
+        </div>
       </div>
 
       <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse"
@@ -224,7 +232,7 @@
         </div>
 
         <div class="form-floating col-sm-6 my-3">
-          <input type="text" id="inp-so-nha" class="form-control" placeholder="..." />
+          <input type="text" id="inp-du-an" class="form-control" placeholder="..." />
           <label class="form-label">Dự án</label>
         </div>
         <div class="form-floating col-sm-6 my-3">
@@ -395,7 +403,7 @@
             Licensing information: https://bootstrapmade.com/license/
             Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
           -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
           </div>
         </div>
       </div>
@@ -419,6 +427,9 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="/assets/js/dangBai.js"></script>
+  <script src="assets/js/checkToken.js"></script>
+  <script src="assets/js/checkUser.js"></script>
+  <script src="assets/js/btnDangXuat.js"></script>
 
 </body>
 

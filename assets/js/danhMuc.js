@@ -3,7 +3,7 @@ jQuery(($) => {
   window.localStorage.setItem("current", "property-grid.html");
   console.log("Khu vực danh sách nhà đang bán");
 
-  const gURL = "http://localhost:8080";
+  const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
   $.ajax({
     type: "GET",
     url: gURL + "/posts?p=0&s=9",
@@ -32,9 +32,12 @@ jQuery(($) => {
 
       let cardBody = $("<div class='card-body'>").appendTo(overLayContent);
 
-      let priceBox = $("<div class='price-box d-flex'>").appendTo(cardBody);
-      $(priceBox).html(`<span class='price-a'>${post.hinhThuc} | ${post.giaTien}</span>`);
-      $(`<a href='#' class='link-a'>Chi tiết <span class="bi bi-chevron-right"></span></a>`).appendTo(cardBody);
+      let priceBox = $("<div class='price-box d-flex ps-3 m-1'>").appendTo(cardBody);
+      $(priceBox).html(`<span class='price-a p-3'>${post.hinhThuc} | ${post.giaTien} VND</span>`);
+      $("<div>", {
+        class: "row ps-3 m-1",
+        html: `<a href='#' class='link-a'>Chi tiết <span class="bi bi-chevron-right"></span></a>`
+      }).appendTo(cardBody);
 
       let overlayFooter = $("<div class='card-footer-a'>").appendTo(overLayContent);
       overlayFooter.html(`<ul class="card-info d-flex justify-content-around">

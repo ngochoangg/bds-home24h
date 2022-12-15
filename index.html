@@ -135,6 +135,14 @@
             <a class="nav-link " href="contact.html">Liên hệ</a>
           </li>
         </ul>
+        <div class="nav-item dropdown">
+          <button class="btn" id="dropdownUser" type="button" data-bs-toggle="dropdown" aria-expanded="true"><span
+              id="user-name">Guest</span></button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+            <li><a class="btn btn-link btn-logout text-decoration-none" type="button" id="btn-nhap-xuat">Đăng
+                xuất</a></li>
+          </ul>
+        </div>
       </div>
 
       <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse"
@@ -631,7 +639,10 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <!-- custom js -->
+  <script src="assets/js/checkToken.js"></script>
+  <script src="assets/js/checkUser.js"></script>
   <script src="assets/js/trangChu.js"></script>
+  <script src="assets/js/btnDangXuat.js"></script>
 
 </body>
 

@@ -1,21 +1,9 @@
 //blog-grid.html
 
 jQuery(($) => {
+    window.localStorage.setItem("current", "blog-grid.html");
     console.log("Khu vực để đăng bài mới");
-    const gURL = "http://localhost:8080";
-
-    const baiDang = {
-        loaiNhaDat: "Nhà đất",
-        hinhThuc: "Cho thuê",
-        tinhThanh: "SG",
-        quanHuyen: 8,
-        dienTich: 1000,
-        soPhong: 5,
-        soTang: 1,
-        duAn: "Thổ cư",
-        daBan: false,
-        giaTien: 2000000
-    }
+    const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
 
     //Gọi API lấy danh sách tỉnh thành, quận huyện
     $.ajax({
@@ -58,24 +46,12 @@ jQuery(($) => {
 
     //Nút tìm kiếm
     $(document).on("click", ".btn-tim-kiem", () => {
-        $.ajax({
-            url: "http://localhost:8080/post",
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(baiDang),
-            contentType: "application/json",
-            success: (data) => {
-                console.log(data);
-            },
-            error: (err) => {
-                console.log(err);
-                console.log(err.responseText);
-            }
-        });
+        console.log("Tim kiem");
     })
 
     //Nút tạo mới bài đăng
     $(document).on("click", ".btn-create-post", () => {
+        let token = window.localStorage.getItem("Token");
         let baiDang = {
             loaiNhaDat: $("#inp-loai-nha-dat").val(),
             hinhThuc: $("#sel-hinh-thuc :selected").val(),
@@ -84,35 +60,50 @@ jQuery(($) => {
             dienTich: $("#inp-dien-tich").val(),
             soPhong: $("#inp-so-phong").val(),
             soTang: $("#inp-so-tang").val(),
-            duAn: "Thổ cư",
+            duAn: $("#inp-du-an").val(),
             daBan: false,
             giaTien: $("#inp-gia-tien").val(),
             soNha: $("#inp-so-nha").val(),
             ghiChu: $("#area-ghi-chu").val(),
             linkAnh: $("#inp-link-anh").val()
         }
-        if (dataValid(baiDang)) {
+        let header = {
+            "Content-Type": "application/json",
+            "Authorization": "Token " + token
+        }
+
+        //Post bai dang
+        if (dataValid(baiDang) && token != "") {
             $.ajax({
                 url: `${gURL}/post`,
-                type: "POST",
-                dataType: "json",
+                method: "POST",
+                headers: header,
                 data: JSON.stringify(baiDang),
-                contentType: "application/json",
                 success: (data) => {
                     console.log(data);
                 },
                 error: (err) => {
-                    console.log(err);
+                    console.log("Error man: ", err);
+                    errorHandler(err);
                 }
             });
         }
 
     })
 
+    //Process 403
+    function errorHandler(dataError) {
+        if (dataError.status === 403) {
+            // alert("Chưa đăng nhập");
+            confirm("Bạn chưa đăng nhập, đăng nhập để đăng tin ngay?") ? window.location.assign("login.html") : console.log("zzz");;
+        }
+    }
+
+
     //validate
     function dataValid(baiDangObject) {
         if (!baiDangObject.loaiNhaDat) {
-            alert("Missing loaiNhaDat");
+            alert("Chưa điền loại nhà đất");
             return false;
         }
         if (baiDangObject.hinhThuc === "0") {
@@ -120,7 +111,7 @@ jQuery(($) => {
             return false;
         }
         if (!baiDangObject.dienTich) {
-            alert("Diện tích ");
+            alert("Diện tích ?");
             return false;
         }
         if (!baiDangObject.giaTien) {
