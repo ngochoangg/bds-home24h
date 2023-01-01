@@ -6,6 +6,65 @@
 */
 (function () {
   "use strict";
+  const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";//"http://127.0.0.1:8080";
+  const path = window.location.pathname;
+
+  const username = window.localStorage.getItem("username");
+  const token = window.localStorage.getItem("Token");
+
+  //Check token
+
+  if (token) {
+    checkToken(token);
+  }
+
+  //Check user
+
+  if (username) {
+    $("#user-name").html(username);
+    $("#btn-nhap-xuat").html("Đăng xuất");
+
+  } else {
+    $("#user-name").html("Guest");
+    $("#btn-nhap-xuat")
+      // .attr("href", "login.html")
+      .html("Đăng nhập");
+  }
+
+  //Event cho btn dang xuat
+  $(document).on("click", "#btn-nhap-xuat", (e) => {
+
+    let text = e.target.innerHTML;
+    if ("Đăng nhập".match(text)) {
+      window.location.assign("login.html");
+    } else {
+      window.localStorage.removeItem("username");
+      window.localStorage.removeItem("Token");
+      window.location.assign(path);
+    }
+  })
+
+  //Check username by token
+  function checkToken(token) {
+    $.ajax({
+      url: gURL + "/who",
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain"
+      },
+      data: token,
+      success: async (response) => {
+        window.localStorage.setItem("username", await response);
+      },
+      error: (error) => {
+        console.log("Phiên đăng nhập hết hạn", error);
+        window.localStorage.removeItem("Token");
+        window.localStorage.removeItem("username");
+      }
+
+    })
+  }
+
 
   /**
    * Easy selector helper function

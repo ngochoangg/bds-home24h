@@ -65,7 +65,8 @@ jQuery(($) => {
             giaTien: $("#inp-gia-tien").val(),
             soNha: $("#inp-so-nha").val(),
             ghiChu: $("#area-ghi-chu").val(),
-            linkAnh: $("#inp-link-anh").val()
+            linkAnh: $("#inp-link-anh").val(),
+            user: window.localStorage.getItem("username")
         }
         let header = {
             "Content-Type": "application/json",
@@ -84,7 +85,7 @@ jQuery(($) => {
                 },
                 error: (err) => {
                     console.log("Error man: ", err);
-                    errorHandler(err);
+                    errorHandler(err.status);
                 }
             });
         }
@@ -93,9 +94,9 @@ jQuery(($) => {
 
     //Process 403
     function errorHandler(dataError) {
-        if (dataError.status === 403) {
+        if (dataError === 403) {
             // alert("Chưa đăng nhập");
-            confirm("Bạn chưa đăng nhập, đăng nhập để đăng tin ngay?") ? window.location.assign("login.html") : console.log("zzz");;
+            confirm("Bạn chưa đăng nhập, đăng nhập để đăng tin ngay?") ? window.location.assign("login.html") : console.log("zzz");
         }
     }
 
@@ -124,6 +125,10 @@ jQuery(($) => {
         }
         if (baiDangObject.quanHuyen === "0") {
             alert("Chưa chọn quận/huyện");
+            return false;
+        }
+        if (!baiDangObject.user) {
+            errorHandler(403);
             return false;
         }
         if (!baiDangObject.linkAnh) {

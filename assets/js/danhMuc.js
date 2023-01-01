@@ -6,7 +6,7 @@ jQuery(($) => {
   const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
   $.ajax({
     type: "GET",
-    url: gURL + "/posts?p=0&s=9",
+    url: gURL + `/post/lts?p=${0}&s=${9}`,
     dataType: "json",
     success: function (response) {
       loadDataToCard(response);

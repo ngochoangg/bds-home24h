@@ -8,6 +8,7 @@
     <meta name="Description" content="Devcamp task 81.30" />
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
     <title>Sign up</title>
 </head>
 
@@ -15,14 +16,22 @@
 
     <div class="container h-100">
         <div class="d-flex flex-column align-items-center justify-content-center vh-100">
+            <div class="d-flex justify-content-center py-4">
+                <a href="/index.html" class="logo d-flex align-items-center w-auto">
+                    <em class="bi bi-arrow-left"></em>
+                    <span class="d-none d-lg-block"> Về trang chủ</span>
+                </a>
+            </div><!-- End Logo -->
             <h1>Đăng ký tài khoản</h1>
             <p>Điền thông tin bên dưới để hoàn tất đăng ký</p>
             <div class="form p-3">
                 <div class="row">
-                    <input type="text" name="fullname" class="form-control col m-1" placeholder="Họ và tên" />
+                    <input type="text" name="fullname" class="form-control col m-1 inp-fullname"
+                        placeholder="Họ và tên" />
                 </div>
                 <div class="row">
-                    <input type="text" name="username" class="form-control col m-1" placeholder="Tên đăng nhập" />
+                    <input type="text" name="username" class="form-control col m-1 inp-username"
+                        placeholder="Tên đăng nhập" />
                 </div>
 
                 <div class="row">
@@ -41,7 +50,10 @@
                     <label for="accept-terms" class="form-check-label m-1">Tôi chấp nhận điều khoản và điều kiện</label>
                 </div>
                 <div class="row">
-                    <button class="btn btn-primary btn-signup">Đăng ký</button>
+                    <button class="btn btn-primary btn-signup" type="button">Đăng ký</button>
+                </div>
+                <div class="col-12 my-3">
+                    <p class="small mb-0">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
                 </div>
 
             </div>
@@ -51,6 +63,70 @@
     <script src="assets/js/jquery/jquery-3.6.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery/jquery-3.6.1.min.js"></script>
+    <script>
+        jQuery(($) => {
+            const gURL = "http://127.0.0.1:8080/register";
+
+            $(document).on("click", ".btn-signup", (e) => {
+                let user = {
+                    username: $(".inp-username").val(),
+                    hoTen: $(".inp-fullname").val(),
+                    password: $("#password").val(),
+                    email: $("#email").val()
+                }
+                if (dataValid(user)) {
+                    apiProcess(user);
+                }
+
+
+
+            })
+
+            function apiProcess(dataObject) {
+                $.ajax({
+                    type: "POST",
+                    url: gURL,
+                    data: JSON.stringify(dataObject),
+                    processData: false,
+                    dataType: false,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "*/*"
+                    },
+                    success: (response) => {
+                        console.log(response);
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    }
+                })
+            }
+
+
+            //Validate user
+            function dataValid(dataObject) {
+                if (!dataObject.username) {
+                    alert("Username!");
+                    return false;
+                }
+                if (!dataObject.hoTen) {
+                    alert("hoTen!");
+                    return false;
+                } if (!dataObject.password) {
+                    alert("password!");
+                    return false;
+                } if (!dataObject.email) {
+                    alert("email!");
+                    return false;
+                }
+                return true;
+            }
+
+        })
+
+
+    </script>
 </body>
 
 </html>

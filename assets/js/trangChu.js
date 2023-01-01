@@ -10,7 +10,6 @@ jQuery(($) => {
         url: gURL + "/post/lts?post=6",
         dataType: "json",
         success: function (response) {
-            console.log(response);
             loadDataToCarousel(response);
         },
         error: function (err) {
