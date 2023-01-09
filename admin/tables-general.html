@@ -407,8 +407,8 @@
         </div>
 
       </div>
-      <nav aria-label="Post navigation">
-        <ul class="pagination">
+      <nav aria-label="Post navigation" class="py-5 col-sm-11">
+        <ul class="pagination float-end">
           <li class="page-item" id="priv-page"><button class="page-link btn-prev">Previous</button></li>
           <li class="page-item"><button class="page-link btn-page-1">1</button></li>
           <li class="page-link disabled">...</li>
@@ -592,5 +592,19 @@
     </div>
   </div>
 </div>
+
+<!-- Toast show Delete success -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="deletedToast" class="toast" role="alert" aria-live="polite" aria-atomic="true" data-bs-autohide="true">
+    <div class="toast-header bg-success">
+      <strong class="me-auto text-dark">Đã xóa thành công!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" style="min-height: 100px;">
+      <span id="toastDeletedText"></span>
+    </div>
+  </div>
+</div>
+
 
 </html>

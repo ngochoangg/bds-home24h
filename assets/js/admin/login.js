@@ -19,6 +19,20 @@ jQuery(($) => {
         }
     })
 
+    $(document).keypress((e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            let userData = {
+                username: $("#yourUsername").val(),
+                password: $("#yourPassword").val()
+            }
+
+            if (userLoginValid(userData)) {
+                formLogin(userData);
+            }
+        }
+    })
+
     //Signin
     function formLogin(userData) {
 

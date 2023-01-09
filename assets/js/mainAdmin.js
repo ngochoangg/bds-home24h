@@ -8,8 +8,8 @@ jQuery(($) => {
   "use strict";
 
   const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
-  const username = window.localStorage.getItem("username");
-  const token = window.localStorage.getItem("Token");
+  const username = getUsername();
+  const token = getTokenFromLocal();
   const roleAccept = ["ROLE_ADMIN", "ROLE_MANAGER"];
 
   //Lấy về Username
@@ -19,6 +19,7 @@ jQuery(($) => {
     $("#h6-username").html(username);
     $("#h2-username").html(username);
     $("#fullName").val(username);
+    checkRoleAccept(username);
 
   } else {
     $(".span-username").html('username');
@@ -29,6 +30,20 @@ jQuery(($) => {
   }
 
   // ##################################################################
+
+  $(document).on("click", ".btn-adminlogin", () => {
+    console.log("ADMIN");
+    window.localStorage.removeItem("Token");
+    window.localStorage.removeItem("username");
+    window.location.assign("pages-login.html");
+  })
+
+  $(document).on("click", ".btn-backhome", () => {
+    console.log("Home");
+    window.location.assign("../index.html");
+  })
+
+  // ################################################################
 
   //Check username by token
   function checkToken(token) {
@@ -52,6 +67,40 @@ jQuery(($) => {
 
     })
   }
+
+  //Check role
+  function checkRoleAccept(username) {
+    $.ajax({
+      url: `${gURL}/roles?username=${username}`,
+      method: "GET",
+      headers: {
+        "Authorization": "Token " + getTokenFromLocal()
+      },
+      success: async (response) => {
+        for (const roles of response) {
+          if (!roleAccept.includes(roles.roleKey)) {
+            $("#modalForbidden").modal("show");
+          }
+        }
+      },
+      error: (error) => {
+        console.log("Error: ", error);
+        $("#modalForbidden").modal("show");
+      }
+    })
+  }
+
+  // get token
+  function getTokenFromLocal() {
+    return window.localStorage.getItem("Token");
+  }
+
+  // get username
+  function getUsername() {
+    return window.localStorage.getItem("username");
+  }
+
+
 
   // ##################################################################
 
@@ -343,7 +392,7 @@ jQuery(($) => {
   /**
    * Initiate Bootstrap validation check
    */
-  var needsValidation = document.querySelectorAll('.needs-validation')
+  let needsValidation = document.querySelectorAll('.needs-validation')
 
   Array.prototype.slice.call(needsValidation)
     .forEach(function (form) {

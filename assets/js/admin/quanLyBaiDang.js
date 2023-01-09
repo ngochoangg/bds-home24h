@@ -55,6 +55,7 @@ jQuery(($) => {
             }
         ],
         lengthChange: false,
+        info: false,
         searching: false,
         processing: true,
         paging: false,
@@ -73,6 +74,10 @@ jQuery(($) => {
                     gPage = 0;
                     $("#priv-page").addClass("disabled");
                     $("#next-page").removeClass("disabled");
+                }
+                if (data.length > 0 && gPage > 0) {
+                    $("#next-page").removeClass("disabled");
+                    $("#priv-page").removeClass("disabled");
                 }
                 if (data.length < 10) {
                     $("#priv-page").removeClass("disabled");
@@ -93,6 +98,13 @@ jQuery(($) => {
     provinceLoad();
 
 
+    //On modal change province
+    $(document).on("change", "#selectModalTinhThanh", (e) => {
+        const provinceCode = e.target.value;
+        getDistricts(provinceCode);
+    })
+
+
     //on Click btn edit
     $(document).on("click", ".btn-table-edit", (e) => {
         let thisId = $(e.target).closest("tr").find("td:eq(0)").text();
@@ -105,13 +117,15 @@ jQuery(($) => {
     $(document).on("click", ".btn-table-delete", (e) => {
         let thisId = $(e.target).closest("tr").find("td:eq(0)").text();
         console.log("deleting... ", thisId);
+        deletePost(thisId);
     })
 
     //On click btn save modal
 
     $(document).on("click", ".btn-modal-save", (e) => {
-        console.log("HIHI");
-        getModalData();
+        let data = getModalData();
+        updateData(data);
+        $("#modalPost").modal("hide");
     })
 
     //on Click btn pagination 1
@@ -203,6 +217,24 @@ jQuery(($) => {
         })
     }
 
+    //Danh sanh quan huyen
+    function getDistricts(provinceCode) {
+        $.ajax({
+            url: `${gURL}/province/${provinceCode}/d`,
+            method: "GET",
+            dataType: "json",
+            success: async (response) => {
+                $("#selectModalQuanHuyen").html("");
+                for (const district of await response) {
+                    $("<option>")
+                        .val(district.id)
+                        .html(`${district.prefix} ${district.name}`)
+                        .appendTo($("#selectModalQuanHuyen"));
+                }
+            }
+        })
+    }
+
     //Xử lý modal cho sự kiện bấm nút chi tiết
 
     //Load data to Modal input and select;
@@ -228,6 +260,26 @@ jQuery(($) => {
 
     }
 
+    //Delete post handler
+    function deletePost(postId) {
+        if (confirm("Xác nhận xóa bài đăng với ID: " + postId + " ?")) {
+            $.ajax({
+                type: 'DELETE',
+                url: `${gURL}/post/${postId}`,
+                headers: {
+                    "Authorization": "Token " + gToken,
+                    "Content-Type": "application/json"
+                },
+                success: () => {
+                    $("#toastDeletedText").html(`Bài đăng với ID: ${postId} đã được xóa thành công và không thể hoàn tác!`)
+                    $("#deletedToast").toast("show");
+                    gPOST_TABLE.ajax.reload();
+                },
+                error: (error) => { console.log(error); }
+            })
+        }
+    }
+
     //Get data from modal
     function getModalData() {
 
@@ -243,14 +295,43 @@ jQuery(($) => {
             soTang: $("#inpModalSoTang").val(),
             dienTich: $("#inpModalDienTich").val(),
             duAn: $("#inpModalDuAn").val(),
-            daBan: $("#selectModalDaBan").val(),
+            daBan: $("#selectModalDaBan option:selected").text(),
             status: $("#selectModalStatus").val(),
             linkAnh: $("#inpModalImage").val(),
             giaTien: $("#inpModalGiaTien").val(),
             ghiChu: $("#inpModalGhiChu").val(),
             user: $("#inpModalNguoiDang").val()
         }
-        console.log(postToUpdate);
+        return postToUpdate;
+    }
+
+    //Update data
+    function updateData(postData) {
+        const postId = postData.id;
+        for (const keyValue of Object.keys(postData)) {
+            if (postData[keyValue] == null) {
+                alert(keyValue + " - trống!")
+                throw new Error(`${keyValue} empty`);
+            }
+        }
+
+        $.ajax({
+            url: `${gURL}/post/${postId}`,
+            method: "PUT",
+            headers: {
+                "Authorization": "Token " + gToken,
+                "Content-Type": "application/json"
+            },
+            dataType: "json",
+            data: JSON.stringify(postData),
+            success: async (response) => {
+                console.log(response);
+                gPOST_TABLE.ajax.reload();
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
     }
 
     //Get token 
