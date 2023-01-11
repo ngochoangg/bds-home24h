@@ -20,58 +20,34 @@ jQuery(($) => {
 
   function loadDataToCarousel(postOfSix) {
     for (const lstPost of postOfSix) {
-      const carouselSlide = $(`<div class="carousel-item-b swiper-slide">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-6.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="property-single.html">206 Mount
-                          <br /> Olive Road Two</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="#" class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
+      const carouselSlide = $(`<div class="swiper-slide">
+                <div class="card bg-gradient text-white align-items-center">
+                  <img src="${lstPost.linkAnh}" class="card-img" alt="..." style="max-height:500px;object-fit: cover;object-position: 50% 50%;">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title text-center">${lstPost.soNha} ${lstPost.quanHuyen.name} ${lstPost.tinhThanh.provinceName}</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   </div>
                 </div>
-              </div>
-            </div>`)
-        .appendTo("#carousel-lastest-post");
+            </div>`);
 
-
-
+      carouselSlide.appendTo("#carousel-lastest-post");
     }
   }
-
+  // Carousel
+  const swiper = new Swiper('#property-carousel', {
+    effect: "default",
+    lazy: true,
+    zoom: true,
+    transform: 3000,
+    grabCursor: true,
+    autoplay: {
+      delay: 3000,
+    },
+    centeredSlides: true,
+    slidesPerView: "auto",
+    pagination: {
+      el: '.propery-carousel-pagination',
+      type: 'fraction',
+    },
+  });
 })

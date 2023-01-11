@@ -22,6 +22,7 @@
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -221,48 +222,219 @@
               <img src="assets/img/slide-3.jpg" alt="" class="img-fluid">
             </div>
           </div> -->
-          <div class="card m-4 col-sm-12">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="assets/img/post-1.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                    additional content.
-                    This content is a little bit longer.</p>
+          <div class="col-sm-12 my-5">
+            <!-- Slider main container -->
+            <div class="swiper col-sm-6">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <div class="card bg-dark text-white" style="flex:1; align-items: center; justify-content: center;">
+                    <img src="https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg" class="card-img"
+                      alt="..." style="max-height: 500px;width:fit-content;">
+                    <div class="card-img-overlay">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content.
+                        This content is a little bit longer.</p>
+                      <p class="card-text">Last updated 3 mins ago</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="swiper-slide">
+                  <div class="card bg-dark text-white align-items-center">
+                    <img src="https://images.pexels.com/photos/6128818/pexels-photo-6128818.jpeg" class="card-img"
+                      alt="..." style="max-height: 500px;width:fit-content;">
+                    <div class="card-img-overlay">
+                      <div style="background-color: #2eca6a73;">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                          additional content.
+                          This content is a little bit longer.</p>
+                        <p class="card-text">Last updated 3 mins ago</p>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+                <div class="swiper-slide">
+                  <div class="card bg-dark text-white align-items-center">
+                    <img src="/assets/img/property-3.jpg" class="card-img" alt="..."
+                      style="max-height: 500px;width:fit-content;">
+                    <div class="card-img-overlay">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content.
+                        This content is a little bit longer.</p>
+                      <p class="card-text">Last updated 3 mins ago</p>
+                    </div>
+                  </div>
+
                 </div>
               </div>
-            </div>
-            <div class="card-footer">
-              <p class="card-text text-center"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
-          <script>
-            for (const post of paramData) {
-              let cardPost = $(`<div class="card m-4 col-sm-12">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="${post.linkAnh}" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">${post.soNha ? post.soNha + ", " : ""} ${post.quanHuyen.name}, ${post.tinhThanh.provinceName}</h5>
-                  <p class="card-text">Loại: ${post.loaiNhaDat}</p>
-                  <p class="card-text">Hình thức: ${post.hinhThuc}</p>
-                  <p class="card-text">Dự án: ${post.duAn}</p>
-                  <p class="card-text">Thông tin thêm: ${post.ghiChu}</p>
+
+
+          <!-- Carousel BS5 -->
+          <section class="pt-5 pb-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="mb-3">Carousel cards title </h3>
+                </div>
+                <div class="col-6 text-right">
+                  <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button"
+                    data-slide="prev">
+                    <i class="fa fa-arrow-left"></i>
+                  </a>
+                  <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                    <i class="fa fa-arrow-right"></i>
+                  </a>
+                </div>
+                <div class="col-12">
+                  <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <div class="row">
+
+                          <div class="col-md-4 mb-3">
+                            <div class="card"
+                              style=" flex: 1; flex-direction: column; align-items: center; justify-content: center;">
+                              <img class="img-fluid img-thumbnail" alt="100%x280"
+                                style="max-height: 300px;width: fit-content;"
+                                src="https://images.pexels.com/photos/6128818/pexels-photo-6128818.jpeg">
+                              <div class="card-body">
+                                <h4 class="card-title">Special title treatment</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                  content.</p>
+
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="card">
+                              <img class="img-fluid" alt="100%x280"
+                                src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
+                              <div class="card-body">
+                                <h4 class="card-title">Special title treatment</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                  content.</p>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="card">
+                              <img class="img-fluid" alt="100%x280"
+                                src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                              <div class="card-body">
+                                <h4 class="card-title">Special title treatment</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                  content.</p>
+
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="row">
+
+                          <div class="col-md-4 mb-3">
+                            <div class="card">
+                              <img class="img-fluid" alt="100%x280"
+                                src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                              <div class="card-body">
+                                <h4 class="card-title">Special title treatment</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                  content.</p>
+
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="card">
+                              <img class="img-fluid" alt="100%x280"
+                                src="https://images.unsplash.com/photo-1532715088550-62f09305f765?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ebadb044b374504ef8e81bdec4d0e840">
+                              <div class="card-body">
+                                <h4 class="card-title">Special title treatment</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                  content.</p>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="card">
+                              <img class="img-fluid" alt="100%x280"
+                                src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=0754ab085804ae8a3b562548e6b4aa2e">
+                              <div class="card-body">
+                                <h4 class="card-title">Special title treatment</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                  content.</p>
+
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="row">
+
+                          <div class="col-md-4 mb-3">
+                            <div class="card">
+                              <img class="img-fluid" alt="100%x280"
+                                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ee8417f0ea2a50d53a12665820b54e23">
+                              <div class="card-body">
+                                <h4 class="card-title">Special title treatment</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                  content.</p>
+
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="card">
+                              <img class="img-fluid" alt="100%x280"
+                                src="https://images.unsplash.com/photo-1532777946373-b6783242f211?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=8ac55cf3a68785643998730839663129">
+                              <div class="card-body">
+                                <h4 class="card-title">Special title treatment</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                  content.</p>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <div class="card">
+                              <img class="img-fluid" alt="100%x280"
+                                src="https://images.unsplash.com/photo-1532763303805-529d595877c5?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=5ee4fd5d19b40f93eadb21871757eda6">
+                              <div class="card-body">
+                                <h4 class="card-title">Special title treatment</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                  content.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="card-footer">
-              <p class="card-text text-center"><small class="text-muted">Đăng bởi: ${post.user.username}</small></p>
-            </div>
-          </div>`);
-              cardPost.appendTo("#row-main-div");
-            }
-          </script>
+          </section>
+          <!-- End carousel BS5 -->
+
 
           <div class="card m-4 col-sm-12">
             <div class="row g-0">
@@ -667,9 +839,16 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/js/jquery/jquery-3.6.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    const swiper = new Swiper(".swiper", {
+      effect: "cards",
+      grabCursor: true,
+    })
+  </script>
 
 </body>
 
