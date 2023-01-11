@@ -178,33 +178,6 @@
   /**
    * Property carousel
    */
-  new Swiper('#property-carousel', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.propery-carousel-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerGroup: 1,
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
-
-      1200: {
-        loop: true,
-        slidesPerGroup: 2,
-        slidesPerView: 2,
-        spaceBetween: 20
-      }
-    }
-  });
 
   /**
    * News carousel
