@@ -3,60 +3,78 @@ jQuery(($) => {
   window.localStorage.setItem("current", "property-grid.html");
   console.log("Khu vực danh sách nhà đang bán");
 
-  const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
-  $.ajax({
-    type: "GET",
-    url: gURL + `/post/lts?p=${0}&s=${9}`,
-    dataType: "json",
-    success: function (response) {
-      loadDataToCard(response);
-    }
-  });
+  let gPage = 0;
 
+  const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
+
+  getData();
+
+
+  $(document).on("click", ".link-load-more", (e) => {
+    setPage(getPage() + 1);
+    getData();
+  })
+
+  $(document).on("click", ".btn-link-phone", (e) => {
+    let phoneNo = e.target.innerText;
+    window.location.href = "tel:" + phoneNo;
+  })
+
+  //Set page
+  function setPage(page) {
+    gPage = page;
+  }
+
+  //Get page
+  function getPage() {
+    return gPage;
+  }
+
+  //Get Data
+  function getData() {
+    $.ajax({
+      type: "GET",
+      url: gURL + `/post?p=${getPage()}&s=9`,
+      dataType: "json",
+      success: function (response) {
+        loadDataToCard(response);
+        if (response.length === 0 || response.length < 9) {
+          $(".div-end-list").removeClass("d-none");
+          $(".link-load-more").addClass("d-none");
+        } else {
+          $(".div-end-list").addClass("d-none");
+          $(".link-load-more").removeClass("d-none");
+        }
+      }
+    });
+  }
   function loadDataToCard(paramData) {
     for (const post of paramData) {
-      let colPost = $("<div class='col-md-4'>");
-      colPost.appendTo($("#row-main-div"));
 
-      let card = $("<div class='card-box-a card-shadow'>").appendTo(colPost);
-      let imgBox = $("<div class='img-box-a'>").appendTo(card);
-      $(imgBox).html(`<img src='${post.linkAnh}' class='img-a img-fluid'>`);
-
-      let cardOverlay = $("<div class='card-overlay'>").appendTo(card);
-
-      let overLayContent = $("<div class='card-overlay-a-content'>").appendTo(cardOverlay);
-
-      let contentHeader = $("<div class='card-header-a'>").appendTo(overLayContent);
-
-      $(contentHeader).html(`<h2 class='card-title-a'>${post.soNha ? post.soNha : ""} ${post.quanHuyen.name} ${post.tinhThanh.provinceName}`);
-
-      let cardBody = $("<div class='card-body'>").appendTo(overLayContent);
-
-      let priceBox = $("<div class='price-box d-flex ps-3 m-1'>").appendTo(cardBody);
-      $(priceBox).html(`<span class='price-a p-3'>${post.hinhThuc} | ${post.giaTien} VND</span>`);
-      $("<div>", {
-        class: "row ps-3 m-1",
-        html: `<a href='#' class='link-a'>Chi tiết <span class="bi bi-chevron-right"></span></a>`
-      }).appendTo(cardBody);
-
-      let overlayFooter = $("<div class='card-footer-a'>").appendTo(overLayContent);
-      overlayFooter.html(`<ul class="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 class="card-info-title">Diện tích</h4>
-                        <span>${post.dienTich}m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Số phòng</h4>
-                        <span>${post.soPhong}</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Số tầng</h4>
-                        <span>${post.soTang}</span>
-                      </li>
-                    </ul>`);
-
+      let cardPost = $(`<div class="card m-4 col-sm-12">
+            <div class="row g-0">
+              <div class="card-header">
+                  <h5 class="card-title text-center">${post.soNha ? post.soNha + " " : ""} ${post.quanHuyen.name}, ${post.tinhThanh.provinceName}</h5>
+              </div>
+              <div class="col-sm-4 text-center">
+                <img src="${post.linkAnh}" class="img-fluid rounded-start" style="max-height:300px" alt="...">
+              </div>
+              <div class="col-sm-8">
+                <div class="card-body">
+                  <p class="card-text">Loại: ${post.loaiNhaDat}</p>
+                  <p class="card-text">Hình thức: ${post.hinhThuc}</p>
+                  <p class="card-text">Giá tiền: ${post.giaTien}</p>
+                  <p class="card-text">Số điện thoại: <button class="btn btn-link btn-link-phone">${post.user.soDienThoai}</button class=""></p>
+                  <p class="card-text">Dự án: ${post.duAn}</p>
+                  <p class="card-text">Thông tin thêm: ${post.ghiChu}</p>
+                </div>
+              </div>
+              <div class="card-footer">
+                <p class="card-text text-center"><small class="text-muted">Đăng bởi: ${post.user.username} | vào lúc:  ${post.ngayTao ? new Date(post.ngayTao).toLocaleString() : "N/A"}</small></p>
+              </div>
+            </div>
+          </div>`);
+      cardPost.appendTo("#row-main-div");
 
     }
   }

@@ -6,17 +6,7 @@ jQuery(($) => {
     const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
 
     //Gọi API lấy danh sách tỉnh thành, quận huyện
-    $.ajax({
-        type: "GET",
-        url: gURL + "/province?s=63",
-        dataType: "json",
-        success: (data) => {
-            loadProvince(data);
-        },
-        error: (err) => {
-            console.log(err);
-        }
-    });
+    init();
 
     //On province change
     $(document).on("change", "#select-tinh-thanh", (e) => {
@@ -51,7 +41,67 @@ jQuery(($) => {
 
     //Nút tạo mới bài đăng
     $(document).on("click", ".btn-create-post", () => {
-        let token = window.localStorage.getItem("Token");
+        let header = {
+            "Content-Type": "application/json",
+            "Authorization": "Token " + getToken()
+        }
+        let baiDang = getInputData();
+        //Post bai dang
+        if (dataValid(baiDang)) {
+            $.ajax({
+                url: `${gURL}/post`,
+                method: "POST",
+                headers: header,
+                data: JSON.stringify(baiDang),
+                success: (data) => {
+                    clearInputData();
+                    $("#modalIdText").html(`${data.id}`);
+                    $("#modalCreatedPost").modal("show");
+                },
+                error: (err) => {
+                    console.log("Error man: ", err);
+                    errorHandler(err.status);
+                }
+            });
+        }
+
+    })
+
+    //Load Provinces
+    function init() {
+        $.ajax({
+            type: "GET",
+            url: gURL + "/province?s=63",
+            dataType: "json",
+            success: (data) => {
+                loadProvince(data);
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        });
+    }
+
+    //Set data
+    function clearInputData() {
+
+        $("#inp-loai-nha-dat").val("");
+        $("#sel-hinh-thuc").val("");
+        $("#select-tinh-thanh").val("0");
+        $("#select-quan-huyen").val("0");
+        $("#inp-dien-tich").val("");
+        $("#inp-so-phong").val("");
+        $("#inp-so-tang").val("");
+        $("#inp-du-an").val("");
+        $("#inp-gia-tien").val("");
+        $("#inp-so-nha").val("");
+        $("#area-ghi-chu").val("");
+        $("#inp-link-anh").val("");
+    }
+
+    //Get input data
+    function getInputData() {
+
         let baiDang = {
             loaiNhaDat: $("#inp-loai-nha-dat").val(),
             hinhThuc: $("#sel-hinh-thuc :selected").val(),
@@ -68,29 +118,9 @@ jQuery(($) => {
             linkAnh: $("#inp-link-anh").val(),
             user: window.localStorage.getItem("username")
         }
-        let header = {
-            "Content-Type": "application/json",
-            "Authorization": "Token " + token
-        }
 
-        //Post bai dang
-        if (dataValid(baiDang) && token != "") {
-            $.ajax({
-                url: `${gURL}/post`,
-                method: "POST",
-                headers: header,
-                data: JSON.stringify(baiDang),
-                success: (data) => {
-                    console.log(data);
-                },
-                error: (err) => {
-                    console.log("Error man: ", err);
-                    errorHandler(err.status);
-                }
-            });
-        }
-
-    })
+        return baiDang;
+    }
 
     //Process 403
     function errorHandler(dataError) {
@@ -99,6 +129,13 @@ jQuery(($) => {
             confirm("Bạn chưa đăng nhập, đăng nhập để đăng tin ngay?") ? window.location.assign("login.html") : console.log("zzz");
         }
     }
+
+    //Get token
+    function getToken() {
+        return window.localStorage.getItem("Token");
+    }
+
+    //Set token
 
 
     //validate
