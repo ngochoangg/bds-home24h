@@ -21,11 +21,12 @@
             <form class="form p-3">
                 <div class="row">
                     <input type="text" name="username" class="form-control col m-1" placeholder="Tên đăng nhập"
-                        id="inp-username" />
+                        id="inp-username" onkeypress="if(event.keyCode===13)$('.btn-login').trigger('click');" />
                 </div>
 
                 <div class="row py-4">
-                    <input type="password" class="form-control col m-1" id="inp-password" placeholder="Mật khẩu" />
+                    <input type="password" class="form-control col m-1" id="inp-password" placeholder="Mật khẩu"
+                        onkeypress="if(event.keyCode===13)$('.btn-login').trigger('click');" />
                 </div>
 
                 <div class="row">
@@ -34,6 +35,10 @@
 
             </form>
 
+            <div class="my-3">
+                <p>Chưa có tài khoản? <a href="signup.html">Đăng ký ngay tại đây.</a></p>
+            </div>
+
         </div>
     </div>
     <script src="assets/js/jquery/jquery-3.6.1.min.js"></script>
@@ -41,5 +46,18 @@
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/dangNhap.js"></script>
 </body>
+
+<!-- Toast Error -->
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+    <div id="toastError" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-warning">
+            <strong class="me-auto"><i class="bi bi-exclamation-triangle"></i> Lỗi đăng nhập</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body bg-warning">
+            <span id="textError"></span>
+        </div>
+    </div>
+</div>
 
 </html>

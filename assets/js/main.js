@@ -6,7 +6,7 @@
 */
 (function () {
   "use strict";
-  const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";//"http://127.0.0.1:8080";
+  const gURL = "https://hoangvn.azurewebsites.net";//"http://127.0.0.1:8080";
   const path = window.location.pathname;
 
   const username = window.localStorage.getItem("username");
@@ -58,6 +58,8 @@
       },
       error: (error) => {
         console.log("Phiên đăng nhập hết hạn", error);
+        $("#textError").html("Phiên đăng nhập hết hạn! Vui lòng đăng nhập lại");
+        $("#toastError").toast("show");
         window.localStorage.removeItem("Token");
         window.localStorage.removeItem("username");
       }

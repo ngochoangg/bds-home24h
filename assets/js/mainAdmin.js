@@ -7,7 +7,7 @@
 jQuery(($) => {
   "use strict";
 
-  const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
+  const gURL = "https://hoangvn.azurewebsites.net";
   const username = getUsername();
   const token = getTokenFromLocal();
   const roleAccept = ["ROLE_ADMIN", "ROLE_MANAGER"];

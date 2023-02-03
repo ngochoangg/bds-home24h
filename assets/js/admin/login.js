@@ -1,6 +1,6 @@
 jQuery(($) => {
     const token = getTokenFromLocal();
-    const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
+    const gURL = "https://hoangvn.azurewebsites.net";
 
 
     if (token) {

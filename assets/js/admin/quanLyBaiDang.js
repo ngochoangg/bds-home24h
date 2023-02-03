@@ -1,7 +1,7 @@
 //Quan ly Bai Dang
 jQuery(($) => {
     const gToken = getTokenFromLocal();
-    const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";//"http://localhost:8080";
+    const gURL = "https://hoangvn.azurewebsites.net";//"http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
     const gTABLE_HEADER = ['id', 'loaiNhaDat', 'hinhThuc', 'dienTich', 'soNha', 'quanHuyen', 'tinhThanh', 'duAn', 'giaTien', 'user', 'daBan', 'status', 'ngayTao', 'ngayCapNhat', 'action'];
 
     let gPostData = null;

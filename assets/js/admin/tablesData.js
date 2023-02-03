@@ -3,7 +3,7 @@
 jQuery(($) => {
     const gToken = window.localStorage.getItem("Token");
 
-    const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
+    const gURL = "https://hoangvn.azurewebsites.net";
 
     const gHEADER_TABLE = ['id', 'username', 'password', 'email', 'soDienThoai', 'diaChi', 'hoTen', 'action'];
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="Devcamp task 81.30" />
+    <meta name="Description" content="Bat dong san" />
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
@@ -30,13 +30,22 @@
                         placeholder="Họ và tên" />
                 </div>
                 <div class="row">
+                    <input type="email" class="form-control col m-1" id="email" placeholder="Email" />
+                </div>
+
+                <div class="row">
+                    <input type="text" class="form-control col m-1" id="address" placeholder="Địa chỉ" />
+                </div>
+
+                <div class="row">
+                    <input type="tel" class="form-control col m-1" id="phone" placeholder="Số điện thoại" />
+                </div>
+
+                <div class="row">
                     <input type="text" name="username" class="form-control col m-1 inp-username"
                         placeholder="Tên đăng nhập" />
                 </div>
 
-                <div class="row">
-                    <input type="email" class="form-control col m-1" id="email" placeholder="Email" />
-                </div>
                 <div class="row ">
                     <input type="password" class="form-control col m-1" id="password" placeholder="Mật khẩu" />
                 </div>
@@ -53,7 +62,7 @@
                     <button class="btn btn-primary btn-signup" type="button">Đăng ký</button>
                 </div>
                 <div class="col-12 my-3">
-                    <p class="small mb-0">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+                    <p class="mb-0">Đã có tài khoản? <a href="login.html">Đăng nhập ngay</a></p>
                 </div>
 
             </div>
@@ -64,69 +73,50 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery/jquery-3.6.1.min.js"></script>
-    <script>
-        jQuery(($) => {
-            const gURL = "http://127.0.0.1:8080/register";
-
-            $(document).on("click", ".btn-signup", (e) => {
-                let user = {
-                    username: $(".inp-username").val(),
-                    hoTen: $(".inp-fullname").val(),
-                    password: $("#password").val(),
-                    email: $("#email").val()
-                }
-                if (dataValid(user)) {
-                    apiProcess(user);
-                }
-
-
-
-            })
-
-            function apiProcess(dataObject) {
-                $.ajax({
-                    type: "POST",
-                    url: gURL,
-                    data: JSON.stringify(dataObject),
-                    processData: false,
-                    dataType: false,
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "*/*"
-                    },
-                    success: (response) => {
-                        console.log(response);
-                    },
-                    error: (error) => {
-                        console.log(error);
-                    }
-                })
-            }
-
-
-            //Validate user
-            function dataValid(dataObject) {
-                if (!dataObject.username) {
-                    alert("Username!");
-                    return false;
-                }
-                if (!dataObject.hoTen) {
-                    alert("hoTen!");
-                    return false;
-                } if (!dataObject.password) {
-                    alert("password!");
-                    return false;
-                } if (!dataObject.email) {
-                    alert("email!");
-                    return false;
-                }
-                return true;
-            }
-
-        })
-
-
-    </script>
+    <script src="assets/js/signup.js"></script>
 </body>
+
+<!-- Modal Success-->
+<div class="modal fade" id="modalRegistered" tabindex="-1" aria-labelledby="modalRegisteredLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalRegisteredLabel">Đăng ký thành công</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tài khoản bạn đã đăng ký thành công</p>
+                <p>Thông tin chi tiết tài khoản: </p>
+                <p>ID: <span id="span-id"></span></p>
+                <p>Tên người dùng: <span id="span-username"></span></p>
+                <p>Email: <span id="span-email"></span></p>
+                <p>Mật khẩu: <em>Người dùng đặt</em></p>
+                <p>Đăng nhập để đăng bài và quản lý các bài đã đăng</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="login.html" type="button" class="btn btn-info">Đăng nhập ngay</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast register error -->
+
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+    <div id="errorRegister" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-danger">
+            <!-- <img src="..." class="rounded me-2" alt="..."> -->
+            <strong class="me-auto text-dark"><i class="bi bi-exclamation-triangle"></i> ERROR</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body bg-danger">
+            <p>Vui lòng kiểm tra lại thông tin trước khi đăng ký!</p>
+            <p>Tài khoản hoặc email đã tồn tại!</p>
+            <span id="resError"></span>
+        </div>
+    </div>
+</div>
 
 </html>

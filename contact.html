@@ -488,5 +488,17 @@
   <script src="assets/js/main.js"></script>
 
 </body>
+<!-- Toast Error -->
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+  <div id="toastError" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-warning">
+      <strong class="me-auto"><i class="bi bi-exclamation-triangle"></i> Lỗi đăng nhập</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body bg-warning">
+      <span id="textError"></span>
+    </div>
+  </div>
+</div>
 
 </html>

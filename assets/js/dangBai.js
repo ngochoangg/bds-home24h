@@ -3,7 +3,7 @@
 jQuery(($) => {
     window.localStorage.setItem("current", "blog-grid.html");
     console.log("Khu vực để đăng bài mới");
-    const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
+    const gURL = "https://hoangvn.azurewebsites.net";
 
     //Gọi API lấy danh sách tỉnh thành, quận huyện
     init();

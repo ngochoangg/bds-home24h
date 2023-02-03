@@ -1,5 +1,5 @@
 jQuery(($) => {
-    const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
+    const gURL = "https://hoangvn.azurewebsites.net";
     const gToken = getTokenFromLocal();
 
 
@@ -18,7 +18,7 @@ jQuery(($) => {
                     'rgb(46 202 106)',
                     'rgb(255 119 29)'
                 ],
-                hoverOffset: 9,
+                hoverOffset: 4,
                 data: [0, 0, 0]
             }]
         }

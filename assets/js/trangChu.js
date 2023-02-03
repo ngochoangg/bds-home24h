@@ -3,7 +3,7 @@ jQuery(($) => {
   window.localStorage.setItem("current", "index.html");
   console.log("Trang index");
 
-  const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
+  const gURL = "https://hoangvn.azurewebsites.net";
 
   //Init page, load lastest post
   init();

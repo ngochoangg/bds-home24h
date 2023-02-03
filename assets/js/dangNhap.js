@@ -1,5 +1,5 @@
 jQuery(($) => {
-    const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";//"http://localhost:8080";
+    const gURL = "https://hoangvn.azurewebsites.net";//"http://localhost:8080";
     console.log("Trang dang nhap");
     const localToken = getLocalStorage("Token");
     let prevPage = localStorage.getItem("current");
@@ -8,7 +8,7 @@ jQuery(($) => {
         checkToken(localToken);
     }
     $(document).on("click", ".btn-login", (e) => {
-        console.log("login", e.which);
+        console.log("logging in ...");
 
         let userData = {
             username: $("#inp-username").val(),
@@ -37,6 +37,8 @@ jQuery(($) => {
             },
             error: (error) => {
                 console.log("Phiên đăng nhập hết hạn", error);
+                $("#textError").html("Phiên đăng nhập hết hạn! Vui lòng đăng nhập lại");
+                $("#toastError").toast("show");
                 window.localStorage.removeItem("Token");
                 window.localStorage.removeItem("username");
             }
@@ -57,15 +59,13 @@ jQuery(($) => {
                 "Content-Type": "application/json"
             },
             timeout: 0,
-            processData: false,
-            contentType: false,
             success: async function (response) {
-                console.log(response);
                 window.localStorage.setItem("Token", await response);
                 checkToken(response);
             },
             error: function (error) {
-                console.log(error, error.responseText);
+                $("#textError").html(error.responseText);
+                $("#toastError").toast("show");
             }
         });
     }

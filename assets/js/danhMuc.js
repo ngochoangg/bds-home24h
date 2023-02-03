@@ -5,7 +5,7 @@ jQuery(($) => {
 
   let gPage = 0;
 
-  const gURL = "http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
+  const gURL = "https://hoangvn.azurewebsites.net";
 
   getData();
 
@@ -64,7 +64,7 @@ jQuery(($) => {
                   <p class="card-text">Loại: ${post.loaiNhaDat}</p>
                   <p class="card-text">Hình thức: ${post.hinhThuc}</p>
                   <p class="card-text">Giá tiền: ${post.giaTien}</p>
-                  <p class="card-text">Số điện thoại: <button class="btn btn-link btn-link-phone">${post.user.soDienThoai}</button class=""></p>
+                  <p class="card-text">Số điện thoại: <button class="btn btn-link btn-link-phone">${post.user.soDienThoai} </button><span class="badge bg-danger"><i class="bi bi-arrow-left"></i> Gọi ngay</span></p>
                   <p class="card-text">Dự án: ${post.duAn}</p>
                   <p class="card-text">Thông tin thêm: ${post.ghiChu}</p>
                 </div>
