@@ -1,6 +1,5 @@
 jQuery(($) => {
-    const gURL = "https://hoangvn.azurewebsites.net";
-    const gToken = getTokenFromLocal();
+    const gURL = "https://hom24h.up.railway.app/api";
 
 
     let chart = new Chart($("#reportsChart")[0].getContext("2d"), {
@@ -33,7 +32,7 @@ jQuery(($) => {
             type: "GET",
             url: `${gURL}/post/stat?s=${status}`,
             headers: {
-                "Authorization": `Token ${gToken}`
+                "Authorization": `Token ${getTokenFromLocal()}`
             }
         });
     }

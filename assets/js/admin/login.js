@@ -1,6 +1,6 @@
 jQuery(($) => {
     const token = getTokenFromLocal();
-    const gURL = "https://hoangvn.azurewebsites.net";
+    const gURL = "https://hom24h.up.railway.app/api";
 
 
     if (token) {
@@ -78,9 +78,9 @@ jQuery(($) => {
                 "Content-Type": "text/plain"
             },
             data: token,
-            success: async (response) => {
-                window.localStorage.setItem("username", await response);
-                console.log(response);
+            async: false,
+            success: (response) => {
+                window.localStorage.setItem("username", response);
                 window.location.assign("index.html");
             },
             error: (error) => {

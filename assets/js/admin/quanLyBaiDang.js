@@ -1,7 +1,7 @@
 //Quan ly Bai Dang
 jQuery(($) => {
     const gToken = getTokenFromLocal();
-    const gURL = "https://hoangvn.azurewebsites.net";//"http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
+    const gURL = "https://hom24h.up.railway.app/api";//"http://question-env.eba-es2s4tgm.ap-southeast-1.elasticbeanstalk.com";
     const gTABLE_HEADER = ['id', 'loaiNhaDat', 'hinhThuc', 'dienTich', 'soNha', 'quanHuyen', 'tinhThanh', 'duAn', 'giaTien', 'user', 'daBan', 'status', 'ngayTao', 'ngayCapNhat', 'action'];
 
     let gPostData = null;
@@ -67,9 +67,11 @@ jQuery(($) => {
             },
             headers: {
                 "Content-Type": "application/json",
+                'Access-Control-Allow-Origin': '*',
                 "Authorization": "Token " + gToken
             },
             dataSrc: (data) => {
+                console.log(data);
                 if (gPage <= 0) {
                     gPage = 0;
                     $("#priv-page").addClass("disabled");
@@ -87,7 +89,7 @@ jQuery(($) => {
                 return data;
             },
             error: (error) => {
-                console.log(error);
+                console.log("Loix: ", error);
                 if (error.status === 403) {
                     alert("Bạn không có quyền xem trang này");
                 }

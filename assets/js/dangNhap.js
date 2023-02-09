@@ -1,12 +1,9 @@
 jQuery(($) => {
-    const gURL = "https://hoangvn.azurewebsites.net";//"http://localhost:8080";
+    const gURL = "https://hom24h.up.railway.app/api";//"http://localhost:8080";
     console.log("Trang dang nhap");
-    const localToken = getLocalStorage("Token");
+    // const localToken = getLocalStorage("Token");
     let prevPage = localStorage.getItem("current");
 
-    if (localToken) {
-        checkToken(localToken);
-    }
     $(document).on("click", ".btn-login", (e) => {
         console.log("logging in ...");
 

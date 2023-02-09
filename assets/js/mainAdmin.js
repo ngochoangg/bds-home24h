@@ -4,28 +4,28 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-jQuery(($) => {
+jQuery(async ($) => {
   "use strict";
 
-  const gURL = "https://hoangvn.azurewebsites.net";
+  const gURL = "https://hom24h.up.railway.app/api";
   const username = getUsername();
   const token = getTokenFromLocal();
   const roleAccept = ["ROLE_ADMIN", "ROLE_MANAGER"];
 
   //Lấy về Username
-  if (username) {
+  if (username !== null || username !== undefined) {
     checkToken(token);
     $(".span-username").html(username);
     $("#h6-username").html(username);
     $("#h2-username").html(username);
     $("#fullName").val(username);
-    checkRoleAccept(username);
+    checkRoleAccept();
 
   } else {
-    $(".span-username").html('username');
-    $("#h6-username").html('username');
-    $("#h2-username").html('username');
-    $("#fullName").val('username');
+    await $(".span-username").html('username');
+    await $("#h6-username").html('username');
+    await $("#h2-username").html('username');
+    await $("#fullName").val('username');
     window.location.assign("pages-login.html");
   }
 
@@ -50,12 +50,14 @@ jQuery(($) => {
     $.ajax({
       url: gURL + "/who",
       method: "POST",
+      async: false,
       headers: {
         "Content-Type": "text/plain"
       },
       data: token,
-      success: async (response) => {
-        window.localStorage.setItem("username", await response);
+      success: (response) => {
+        console.log("Check Token: ", response);
+        window.localStorage.setItem("username", response);
       },
       error: (error) => {
         console.log("Phiên đăng nhập hết hạn", error);
@@ -69,14 +71,15 @@ jQuery(($) => {
   }
 
   //Check role
-  function checkRoleAccept(username) {
+  function checkRoleAccept() {
     $.ajax({
-      url: `${gURL}/roles?username=${username}`,
+      url: `${gURL}/roles?username=${getUsername()}`,
       method: "GET",
+      async: false,
       headers: {
         "Authorization": "Token " + getTokenFromLocal()
       },
-      success: async (response) => {
+      success: (response) => {
         for (const roles of response) {
           if (!roleAccept.includes(roles.roleKey)) {
             $("#modalForbidden").modal("show");

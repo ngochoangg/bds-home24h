@@ -1,6 +1,6 @@
 jQuery(($) => {
     // const gURL = "http://127.0.0.1:8080/register";
-    const gURL = "https://hoangvn.azurewebsites.net";
+    const gURL = "https://hom24h.up.railway.app/api";
 
     $(document).on("click", ".btn-signup", (e) => {
         let user = {

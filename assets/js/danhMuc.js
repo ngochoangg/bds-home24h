@@ -5,7 +5,7 @@ jQuery(($) => {
 
   let gPage = 0;
 
-  const gURL = "https://hoangvn.azurewebsites.net";
+  const gURL = "https://hom24h.up.railway.app/api";
 
   getData();
 

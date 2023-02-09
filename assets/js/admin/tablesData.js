@@ -3,7 +3,7 @@
 jQuery(($) => {
     const gToken = window.localStorage.getItem("Token");
 
-    const gURL = "https://hoangvn.azurewebsites.net";
+    const gURL = "https://hom24h.up.railway.app/api";
 
     const gHEADER_TABLE = ['id', 'username', 'password', 'email', 'soDienThoai', 'diaChi', 'hoTen', 'action'];
 

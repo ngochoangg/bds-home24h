@@ -3,7 +3,7 @@ jQuery(($) => {
   window.localStorage.setItem("current", "index.html");
   console.log("Trang index");
 
-  const gURL = "https://hoangvn.azurewebsites.net";
+  const gURL = "https://hom24h.up.railway.app/api";
 
   //Init page, load lastest post
   init();

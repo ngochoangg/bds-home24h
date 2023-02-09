@@ -6,7 +6,7 @@
 */
 (function () {
   "use strict";
-  const gURL = "https://hoangvn.azurewebsites.net";//"http://127.0.0.1:8080";
+  const gURL = "https://hom24h.up.railway.app/api";//"http://127.0.0.1:8080";
   const path = window.location.pathname;
 
   const username = window.localStorage.getItem("username");
