@@ -487,3 +487,98 @@
     <script src="../assets/js/admin/tablesData.js"></script>
   </body>
 </html>
+
+<!-- Modal showup when button edit user click -->
+<div class="modal" tabindex="-1" id="modalUser">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Chi tiết người dùng</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row py-3">
+          <div class="col-sm-6">
+            <div class="form-floating mt-3">
+              <input
+                id="modalUserId"
+                class="form-control"
+                type="text"
+                placeholder="User ID"
+              />
+              <label class="col-form-label">ID người dùng</label>
+            </div>
+            <div class="form-floating mt-3">
+              <input
+                id="modalUserFullName"
+                class="form-control"
+                type="text"
+                placeholder="Full name"
+              />
+              <label class="col-form-label">Họ và tên</label>
+            </div>
+            <div class="form-floating mt-3">
+              <input
+                id="modalPhoneNo"
+                class="form-control"
+                type="text"
+                placeholder="Phone number"
+              />
+              <label class="col-form-label">Số điện thoại</label>
+            </div>
+            <div class="form-floating mt-3">
+              <input
+                id="modalAddress"
+                class="form-control"
+                type="text"
+                placeholder="Address"
+              />
+              <label class="col-form-label">Địa chỉ</label>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="form-floating mt-3">
+              <input
+                id="modalUsername"
+                class="form-control"
+                type="text"
+                placeholder="Username"
+              />
+              <label class="col-form-label">Tên đăng nhập</label>
+            </div>
+            <div class="form-floating mt-3">
+              <input
+                id="modalPassword"
+                class="form-control"
+                type="text"
+                placeholder="Password"
+              />
+              <label class="col-form-label">Mật khẩu</label>
+            </div>
+            <div class="form-floating mt-3">
+              <input
+                id="modalEmail"
+                class="form-control"
+                type="text"
+                placeholder="Email address"
+              />
+              <label class="col-form-label">Email</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
