@@ -1,63 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="Description" content="Devcamp task 81.30" />
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
-    <title>Trang đăng nhập</title>
-</head>
+    <link
+      rel="stylesheet"
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+    />
+    <title>Đăng nhập - Login</title>
+  </head>
 
-<body>
-
+  <body>
     <div class="container h-100">
-        <div class="d-flex flex-column align-items-center justify-content-center vh-100">
-            <h5 class="py-5"><a href="index.html" class="link-success"><em class="bi bi-arrow-left-circle"></em> Trang
-                    chủ</a></h5>
-            <h1>Đăng nhập tài khoản</h1>
-            <form class="form p-3">
-                <div class="row">
-                    <input type="text" name="username" class="form-control col m-1" placeholder="Tên đăng nhập"
-                        id="inp-username" onkeypress="if(event.keyCode===13)$('.btn-login').trigger('click');" />
-                </div>
+      <div
+        class="d-flex flex-column align-items-center justify-content-center vh-100"
+      >
+        <h5 class="py-5">
+          <a href="index.html" class="link-success"
+            ><em class="bi bi-arrow-left-circle"></em> Trang chủ</a
+          >
+        </h5>
+        <h1>Đăng nhập tài khoản</h1>
+        <form class="form p-3">
+          <div class="row">
+            <input
+              type="text"
+              name="username"
+              class="form-control col m-1"
+              placeholder="Tên đăng nhập"
+              id="inp-username"
+              onkeypress="if(event.keyCode===13)$('.btn-login').trigger('click');"
+            />
+          </div>
 
-                <div class="row py-4">
-                    <input type="password" class="form-control col m-1" id="inp-password" placeholder="Mật khẩu"
-                        onkeypress="if(event.keyCode===13)$('.btn-login').trigger('click');" />
-                </div>
+          <div class="row py-4">
+            <input
+              type="password"
+              class="form-control col m-1"
+              id="inp-password"
+              placeholder="Mật khẩu"
+              onkeypress="if(event.keyCode===13)$('.btn-login').trigger('click');"
+            />
+          </div>
 
-                <div class="row">
-                    <button type="button" class="btn btn-primary btn-login">Đăng nhập</button>
-                </div>
+          <div class="row">
+            <button type="button" class="btn btn-primary btn-login">
+              Đăng nhập
+            </button>
+          </div>
+        </form>
 
-            </form>
-
-            <div class="my-3">
-                <p>Chưa có tài khoản? <a href="signup.html">Đăng ký ngay tại đây.</a></p>
-            </div>
-
+        <div class="my-3">
+          <p>
+            Chưa có tài khoản? <a href="signup.html">Đăng ký ngay tại đây.</a>
+          </p>
         </div>
+      </div>
     </div>
     <script src="assets/js/jquery/jquery-3.6.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/dangNhap.js"></script>
-</body>
+  </body>
 
-<!-- Toast Error -->
-<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
-    <div id="toastError" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header bg-warning">
-            <strong class="me-auto"><i class="bi bi-exclamation-triangle"></i> Lỗi đăng nhập</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body bg-warning">
-            <span id="textError"></span>
-        </div>
+  <!-- Toast Error -->
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+    <div
+      id="toastError"
+      class="toast hide"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="toast-header bg-warning">
+        <strong class="me-auto"
+          ><i class="bi bi-exclamation-triangle"></i> Lỗi đăng nhập</strong
+        >
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="toast-body bg-warning">
+        <span id="textError"></span>
+      </div>
     </div>
-</div>
-
+  </div>
 </html>
