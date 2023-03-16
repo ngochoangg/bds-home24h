@@ -3,7 +3,7 @@
 jQuery(($) => {
   const gToken = window.localStorage.getItem("Token");
 
-  const gURL = "http://42.119.89.135:8080/api"; //"https://hom24h.up.railway.app/api";
+  const gURL = "https://hom24h.up.railway.app/api"; //"https://hom24h.up.railway.app/api";
 
   const gHEADER_TABLE = [
     "id",

@@ -1,7 +1,7 @@
 console.log("Danh sách bài đăng của người dùng");
 
 //contact.html
-// const API_URI = "https://hom24h.up.railway.app/api";
+const API_URI = "https://hom24h.up.railway.app/api";
 const token = getTokenFromLocal();
 
 if (getUserNameFromLocal() !== null) {
@@ -34,6 +34,11 @@ function getUserPosts() {
     },
   });
 }
+
+//On btn edit click
+$(document).on('click','.btn-edit-post',()=>{
+  console.log("Clicked btn edit");
+})
 
 //Khi tỉnh thành trên modal bị thay đổi
 $(document).on("change", "#selectModalTinhThanh", (e) => {
